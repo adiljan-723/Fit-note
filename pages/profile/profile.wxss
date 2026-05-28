@@ -16,6 +16,49 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
+.cloud-card {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+}
+
+.cloud-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.cloud-title {
+  color: #065f46;
+  font-size: 29rpx;
+  font-weight: 900;
+}
+
+.cloud-desc {
+  max-width: 430rpx;
+  margin-top: 10rpx;
+  color: #4b5563;
+  font-size: 23rpx;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.sync-btn {
+  width: 150rpx;
+  height: 66rpx;
+  margin: 0;
+  border-radius: 999rpx;
+  color: #ffffff;
+  background: #10b981;
+  font-size: 25rpx;
+  font-weight: 900;
+  line-height: 66rpx;
+}
+
+.sync-btn::after {
+  border: 0;
+}
+
 .info-card {
   padding-bottom: 18rpx;
 }

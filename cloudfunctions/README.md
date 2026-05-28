@@ -14,4 +14,21 @@ cloudfunctions/
 └── syncUserData/       云端同步辅助逻辑
 ```
 
-当前版本暂未创建实际云函数，训练、饮食、计划数据仍使用小程序本地缓存。
+当前版本已创建 `login` 云函数，用于获取微信小程序用户 openid，并维护 `users` 集合中的登录信息。
+
+v0.9.0 已接入本地 + 云端同步基础能力：
+
+```text
+users              云函数维护的用户登录信息
+user_profiles      用户资料
+training_records   训练记录
+diet_records       饮食记录
+workout_plans      训练计划
+checkins           打卡记录
+```
+
+后续仍可继续扩展：
+
+- `exportRecords`：导出训练/饮食记录 CSV
+- `getStats`：在云端聚合训练统计
+- `syncUserData`：将当前客户端直连同步升级为统一云函数同步

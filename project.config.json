@@ -1,5 +1,5 @@
 {
-  "description": "Fit Note v0.8.0 CloudBase 云开发初始化与后端改造准备版小程序",
+  "description": "Fit Note v0.9.0 CloudBase 用户身份与云端同步基础版小程序",
   "packOptions": {
     "ignore": [],
     "include": []

@@ -11,11 +11,17 @@ App({
       })
     }
     storage.ensureDefaults()
+    storage.initCloudSync({ pullFirst: true }).then(user => {
+      this.globalData.cloudUser = user
+      this.globalData.cloudSyncStatus = storage.getCloudSyncStatus()
+    })
   },
   globalData: {
     appName: 'Fit Note',
-    version: '0.8.0',
-    cloudEnvId
+    version: '0.9.0',
+    cloudEnvId,
+    cloudUser: null,
+    cloudSyncStatus: storage.getCloudSyncStatus()
   }
 })
 
