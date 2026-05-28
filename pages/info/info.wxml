@@ -1,0 +1,11 @@
+<view class="container info-page">
+  <view class="hero">
+    <view class="hero-title">{{content.title}}</view>
+    <view class="hero-subtitle">{{content.subtitle}}</view>
+  </view>
+
+  <view wx:for="{{content.sections}}" wx:key="title" class="card info-section">
+    <view class="section-title">{{item.title}}</view>
+    <view wx:for="{{item.lines}}" wx:for-item="line" wx:key="*this" class="info-line">{{line}}</view>
+  </view>
+</view>

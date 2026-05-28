@@ -1,0 +1,185 @@
+.exercise-library-page {
+  overflow-x: hidden;
+}
+
+.search-card {
+  padding-bottom: 24rpx;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  margin-top: 20rpx;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  height: 84rpx;
+  padding: 0 22rpx;
+  border-radius: 22rpx;
+  color: #111827;
+  background: #f3f4f6;
+  font-size: 26rpx;
+  box-sizing: border-box;
+}
+
+.clear-btn,
+.record-shortcut,
+.detail-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 999rpx;
+  font-weight: 900;
+}
+
+.clear-btn {
+  width: 104rpx;
+  height: 68rpx;
+  color: #6b7280;
+  background: #e5e7eb;
+  font-size: 24rpx;
+}
+
+.category-scroll {
+  width: 100%;
+  margin-top: 24rpx;
+  white-space: nowrap;
+}
+
+.category-row {
+  display: flex;
+  gap: 14rpx;
+  padding-bottom: 4rpx;
+}
+
+.category-pill {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 18rpx 22rpx;
+  border-radius: 999rpx;
+  color: #374151;
+  background: #ffffff;
+  font-size: 25rpx;
+  font-weight: 900;
+  box-shadow: 0 8rpx 22rpx rgba(17, 24, 39, 0.05);
+}
+
+.category-pill text {
+  color: #10b981;
+  font-size: 22rpx;
+}
+
+.category-pill.active {
+  color: #ffffff;
+  background: #10b981;
+}
+
+.category-pill.active text {
+  color: #d1fae5;
+}
+
+.list-head {
+  align-items: flex-start;
+  gap: 18rpx;
+}
+
+.record-shortcut {
+  width: 128rpx;
+  height: 58rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-size: 23rpx;
+}
+
+.empty {
+  margin-top: 24rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+}
+
+.exercise-item {
+  margin-top: 20rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: #f9fafb;
+  border: 2rpx solid #eef2f7;
+  box-sizing: border-box;
+}
+
+.exercise-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.exercise-name {
+  min-width: 0;
+  color: #111827;
+  font-size: 31rpx;
+  font-weight: 900;
+  word-break: break-all;
+}
+
+.detail-badge {
+  width: 82rpx;
+  height: 48rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-size: 22rpx;
+}
+
+.exercise-meta,
+.exercise-target {
+  margin-top: 10rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.exercise-target {
+  color: #374151;
+}
+
+.equipment-tag {
+  display: flex;
+  margin-top: 14rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  color: #064e3b;
+  background: #ecfdf5;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.search-input,
+.exercise-item,
+.category-pill {
+  border: 1rpx solid #e5e7eb;
+}
+
+.exercise-item {
+  background: #f9fafb;
+}
+
+.category-pill.active {
+  background: #10b981;
+  box-shadow: 0 12rpx 22rpx rgba(16, 185, 129, 0.2);
+}
+
+.record-shortcut,
+.detail-badge,
+.equipment-tag {
+  border: 1rpx solid #a7f3d0;
+}
+
+.clear-btn {
+  border: 1rpx solid #d1d5db;
+}
+
+

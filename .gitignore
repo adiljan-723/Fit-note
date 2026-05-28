@@ -1,0 +1,9 @@
+.codebuddy/
+node_modules/
+miniprogram_npm/
+cloudfunctions/**/node_modules/
+.DS_Store
+.project
+.settings/
+*.log
+project.private.config.json

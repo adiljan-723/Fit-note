@@ -1,0 +1,45 @@
+<view class="container exercise-library-page">
+  <view class="hero">
+    <view class="hero-title">动作库</view>
+    <view class="hero-subtitle">按训练部位查看常见健身房动作，先看要点，再去计划或训练页使用。</view>
+  </view>
+
+  <view class="card search-card">
+    <view class="section-title">查找动作</view>
+    <view class="search-box">
+      <input class="search-input" value="{{keyword}}" bindinput="onSearchInput" placeholder="搜索动作或部位，例如 卧推、背部" />
+      <view wx:if="{{keyword}}" class="clear-btn" bindtap="clearSearch">清空</view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="category-scroll" show-scrollbar="false">
+    <view class="category-row">
+      <view wx:for="{{categories}}" wx:key="bodyPart" class="category-pill {{activeBodyPart === item.bodyPart ? 'active' : ''}}" data-body-part="{{item.bodyPart}}" bindtap="switchCategory">
+        <view>{{item.bodyPart}}</view>
+        <text>{{item.count}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="card list-card">
+    <view class="row between list-head">
+      <view>
+        <view class="section-title">{{activeBodyPart}}动作</view>
+        <view class="section-subtitle">共 {{totalCount}} 个动作</view>
+      </view>
+      <navigator url="/pages/training/training" open-type="switchTab" class="record-shortcut">去记录</navigator>
+    </view>
+
+    <view wx:if="{{exercises.length === 0}}" class="empty">没有找到匹配动作，换个关键词试试。</view>
+
+    <view wx:for="{{exercises}}" wx:key="id" class="exercise-item" data-name="{{item.name}}" data-body-part="{{item.bodyPart}}" bindtap="openDetail">
+      <view class="exercise-title-row">
+        <view class="exercise-name">{{item.name}}</view>
+        <view class="detail-badge">详情</view>
+      </view>
+      <view class="exercise-meta">{{item.bodyPart}} · {{item.level}}</view>
+      <view class="exercise-target">目标：{{item.target}}</view>
+      <view class="equipment-tag">{{item.equipment}}</view>
+    </view>
+  </view>
+</view>

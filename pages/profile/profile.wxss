@@ -1,0 +1,43 @@
+.profile-page {
+  overflow-x: hidden;
+}
+
+.save-btn {
+  margin-top: 32rpx;
+}
+
+.tip-card {
+  margin-bottom: 28rpx;
+  border-color: #bbf7d0;
+  background: #f9fafb;
+}
+
+.profile-page .grid-2 {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.info-card {
+  padding-bottom: 18rpx;
+}
+
+.info-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 84rpx;
+  margin-top: 16rpx;
+  padding: 0 22rpx;
+  border: 1rpx solid #e5e7eb;
+  border-radius: 22rpx;
+  color: #111827;
+  background: #f9fafb;
+  font-size: 27rpx;
+  font-weight: 900;
+  box-sizing: border-box;
+}
+
+
+
+
+
+

@@ -1,0 +1,312 @@
+.training-page {
+  overflow-x: hidden;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18rpx;
+}
+
+.compare-line {
+  margin-top: 20rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  color: #047857;
+  background: #ecfdf5;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.last-record-card,
+.timer-card,
+.volume-card {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: #ecfdf5;
+}
+
+.last-title,
+.timer-label,
+.volume-label {
+  color: #047857;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.last-content,
+.last-empty {
+  margin-top: 12rpx;
+  color: #374151;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.last-groups {
+  margin-top: 6rpx;
+  color: #6b7280;
+}
+
+.copy-last-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 68rpx;
+  margin-top: 16rpx;
+  border-radius: 18rpx;
+  color: #ffffff;
+  background: #10b981;
+  font-size: 25rpx;
+  font-weight: 900;
+}
+
+.group-section {
+  margin-top: 28rpx;
+}
+
+.small-title {
+  font-size: 30rpx;
+}
+
+.add-group-btn {
+  flex-shrink: 0;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.group-card {
+  margin-top: 18rpx;
+  padding: 22rpx;
+  border-radius: 22rpx;
+  background: #f3f4f6;
+}
+
+.group-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12rpx;
+  align-items: center;
+}
+
+.group-title {
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.group-actions {
+  display: flex;
+  gap: 12rpx;
+  flex-shrink: 0;
+}
+
+.group-action,
+.group-delete {
+  padding: 8rpx 12rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.group-action {
+  color: #047857;
+  background: #d1fae5;
+}
+
+.group-delete {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.compact-form {
+  margin-top: 16rpx;
+}
+
+.timer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.timer-time {
+  margin-top: 8rpx;
+  color: #064e3b;
+  font-size: 48rpx;
+  font-weight: 900;
+}
+
+.timer-actions {
+  display: grid;
+  gap: 12rpx;
+  min-width: 180rpx;
+}
+
+.timer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 58rpx;
+  padding: 0 18rpx;
+  border-radius: 999rpx;
+  color: #ffffff;
+  background: #10b981;
+  font-size: 23rpx;
+  font-weight: 900;
+}
+
+.timer-btn.ghost {
+  color: #047857;
+  background: #d1fae5;
+}
+
+.volume-value {
+  margin-top: 8rpx;
+  color: #064e3b;
+  font-size: 48rpx;
+  font-weight: 900;
+}
+
+.volume-help {
+  margin-top: 6rpx;
+  color: #059669;
+  font-size: 22rpx;
+}
+
+.save-btn {
+  margin-top: 28rpx;
+}
+
+.empty {
+  margin-top: 22rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+}
+
+.record-item {
+  margin-top: 20rpx;
+  padding: 22rpx;
+  border-radius: 22rpx;
+  background: #f3f4f6;
+}
+
+.record-info {
+  min-width: 0;
+}
+
+.record-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+}
+
+.record-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 30rpx;
+  font-weight: 900;
+  word-break: break-all;
+}
+
+.record-detail-link,
+.exercise-detail-entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-weight: 900;
+}
+
+.record-detail-link {
+  flex-shrink: 0;
+  width: 78rpx;
+  height: 44rpx;
+  font-size: 22rpx;
+}
+
+.exercise-detail-entry {
+  height: 72rpx;
+  margin-top: 18rpx;
+  font-size: 25rpx;
+}
+
+.record-meta,
+.record-groups,
+.record-note {
+  margin-top: 8rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  word-break: break-all;
+}
+
+.record-volume {
+  flex-shrink: 0;
+  min-width: 100rpx;
+  text-align: right;
+  color: #10b981;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.delete-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+  height: 56rpx;
+  margin: 16rpx 0 0;
+  padding: 0;
+  line-height: normal;
+  border-radius: 999rpx;
+  color: #ef4444;
+  background: #fee2e2;
+  font-size: 24rpx;
+}
+
+
+
+.summary-card,
+.group-card,
+.record-item {
+  border: 1rpx solid #e5e7eb;
+}
+
+.compare-line,
+.last-record-card,
+.timer-card,
+.volume-card {
+  border: 1rpx solid #bbf7d0;
+  background: #f9fafb;
+}
+
+.copy-last-btn,
+.timer-btn {
+  background: #10b981;
+  box-shadow: 0 10rpx 20rpx rgba(16, 185, 129, 0.18);
+}
+
+.group-card,
+.record-item {
+  background: #f9fafb;
+}
+
+.group-action,
+.record-detail-link,
+.exercise-detail-entry,
+.timer-btn.ghost {
+  border: 1rpx solid #a7f3d0;
+  background: #ecfdf5;
+}
+
+.group-delete,
+.delete-link {
+  border: 1rpx solid #fecaca;
+}
+
+

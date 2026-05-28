@@ -1,0 +1,78 @@
+<view class="container profile-page">
+  <view class="hero">
+    <view class="hero-title">我的资料</view>
+    <view class="hero-subtitle">Fit Note 会根据你的目标，优先展示增肌或减脂训练计划和饮食建议。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">基础信息</view>
+
+    <view class="form-item">
+      <view class="label">昵称</view>
+      <input class="input" value="{{form.nickname}}" data-field="nickname" bindinput="onInput" placeholder="例如：Fit Note 用户" />
+    </view>
+
+    <view class="grid-2">
+      <view class="form-item">
+        <view class="label">性别</view>
+        <picker range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+          <view class="picker-box">{{genderOptions[genderIndex]}}</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <view class="label">年龄</view>
+        <input class="input" type="number" value="{{form.age}}" data-field="age" bindinput="onInput" placeholder="岁" />
+      </view>
+    </view>
+
+    <view class="grid-2">
+      <view class="form-item">
+        <view class="label">身高 cm</view>
+        <input class="input" type="digit" value="{{form.height}}" data-field="height" bindinput="onInput" placeholder="例如 175" />
+      </view>
+      <view class="form-item">
+        <view class="label">体重 kg</view>
+        <input class="input" type="digit" value="{{form.weight}}" data-field="weight" bindinput="onInput" placeholder="例如 70" />
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">当前目标</view>
+      <picker range="{{goalLabels}}" value="{{goalIndex}}" bindchange="onGoalChange">
+        <view class="picker-box">{{goalLabels[goalIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="grid-2">
+      <view class="form-item">
+        <view class="label">每周训练</view>
+        <picker range="{{dayLabels}}" value="{{dayIndex}}" bindchange="onDayChange">
+          <view class="picker-box">{{dayLabels[dayIndex]}}</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <view class="label">训练时长</view>
+        <picker range="{{durationLabels}}" value="{{durationIndex}}" bindchange="onDurationChange">
+          <view class="picker-box">{{durationLabels[durationIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+
+
+    <button class="primary-btn save-btn" bindtap="saveProfile">保存资料</button>
+  </view>
+
+  <view class="card info-card">
+    <view class="section-title">产品与数据说明</view>
+    <navigator url="/pages/info/info?type=about" class="info-link">关于我们</navigator>
+    <navigator url="/pages/info/info?type=privacy" class="info-link">隐私说明</navigator>
+    <navigator url="/pages/info/info?type=agreement" class="info-link">用户协议</navigator>
+    <navigator url="/pages/info/info?type=data" class="info-link">数据说明</navigator>
+  </view>
+
+  <view class="card tip-card">
+    <view class="section-title">当前版本 v{{version}}</view>
+    <view class="section-subtitle">v0.8.0 已接入 CloudBase 云开发环境初始化，当前仍保留本地缓存逻辑，后续可继续改造为云数据库、云函数和多设备同步版本。</view>
+  </view>
+
+</view>

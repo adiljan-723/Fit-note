@@ -1,0 +1,71 @@
+<view class="container exercise-detail-page">
+  <view class="hero detail-hero">
+    <view class="hero-title">{{detail.name}}</view>
+    <view class="hero-subtitle">{{detail.intro}}</view>
+    <view class="detail-tags">
+      <view class="detail-tag">{{detail.bodyPart}}</view>
+      <view class="detail-tag">{{detail.level}}</view>
+      <view class="detail-tag">{{detail.equipment}}</view>
+    </view>
+  </view>
+
+  <view class="card target-card">
+    <view class="section-title">主要训练目标</view>
+    <view class="target-text">{{detail.target}}</view>
+    <view class="safe-note">提示：如果出现关节刺痛或明显不适，先降低重量、缩小幅度或更换相近动作。</view>
+  </view>
+
+  <view class="card media-card">
+    <view class="section-title">动作图解</view>
+    <image wx:if="{{detail.imageUrl}}" class="exercise-image" src="{{detail.imageUrl}}" mode="widthFix" />
+    <view wx:else class="image-placeholder">
+      <view class="placeholder-title">图解待补充</view>
+      <view class="placeholder-desc">后续将图片放到下面路径并绑定到 imageUrl：</view>
+      <view class="placeholder-path">{{detail.placeholderImagePath}}</view>
+    </view>
+  </view>
+
+  <view class="card media-card">
+    <view class="section-title">简短视频</view>
+    <video wx:if="{{detail.videoUrl}}" class="exercise-video" src="{{detail.videoUrl}}" controls object-fit="contain"></video>
+    <view wx:else class="video-placeholder">
+      <view class="placeholder-title">视频待补充</view>
+      <view class="placeholder-desc">已预留 videoUrl 字段，后续可接入云存储或 CDN 视频地址。</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">动作步骤</view>
+    <view wx:for="{{detail.steps}}" wx:key="*this" class="step-item">
+      <view class="step-index">{{index + 1}}</view>
+      <view class="step-text">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">训练要点</view>
+    <view wx:for="{{detail.tips}}" wx:key="*this" class="bullet-item good">{{item}}</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">常见错误</view>
+    <view wx:for="{{detail.mistakes}}" wx:key="*this" class="bullet-item warn">{{item}}</view>
+  </view>
+
+  <view class="card advice-card">
+    <view class="section-title">新手建议</view>
+    <view class="advice-text">{{detail.beginnerAdvice}}</view>
+    <view class="action-grid">
+      <view class="primary-btn action-btn" bindtap="startRecord">记录这个动作</view>
+      <view class="secondary-btn action-btn" bindtap="openLibrary">查看同部位动作</view>
+    </view>
+  </view>
+
+  <view wx:if="{{related.length > 0}}" class="card">
+    <view class="section-title">相关动作</view>
+    <view wx:for="{{related}}" wx:key="name" class="related-item" data-name="{{item.name}}" data-body-part="{{item.bodyPart}}" bindtap="openRelatedDetail">
+      <view>{{item.name}}</view>
+      <text>{{item.bodyPart}}</text>
+    </view>
+  </view>
+</view>

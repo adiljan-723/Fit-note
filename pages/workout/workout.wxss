@@ -1,0 +1,218 @@
+.workout-page {
+  overflow-x: hidden;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 22rpx;
+}
+
+.hero-tag {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  color: #d1fae5;
+  background: rgba(16, 185, 129, 0.18);
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.summary-head {
+  gap: 18rpx;
+  align-items: flex-start;
+}
+
+.progress-pill {
+  flex-shrink: 0;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  color: #064e3b;
+  background: #a7f3d0;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.focus-line {
+  margin-top: 20rpx;
+  color: #10b981;
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.progress-bar {
+  height: 18rpx;
+  margin-top: 22rpx;
+  border-radius: 999rpx;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: #10b981;
+}
+
+.empty {
+  margin-top: 22rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.exercise-card {
+  margin-top: 20rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: #f9fafb;
+  border: 2rpx solid #eef2f7;
+  box-sizing: border-box;
+}
+
+.exercise-card.done {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.exercise-head {
+  gap: 18rpx;
+  align-items: flex-start;
+}
+
+.exercise-title-wrap {
+  min-width: 0;
+}
+
+.exercise-name {
+  color: #111827;
+  font-size: 31rpx;
+  font-weight: 900;
+  word-break: break-all;
+}
+
+.exercise-part {
+  margin-top: 8rpx;
+  color: #10b981;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.status-badge {
+  flex-shrink: 0;
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  color: #92400e;
+  background: #fef3c7;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.status-badge.done {
+  color: #064e3b;
+  background: #a7f3d0;
+}
+
+.prescription-line {
+  margin-top: 18rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  color: #374151;
+  background: #ffffff;
+  font-size: 25rpx;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.exercise-note,
+.record-tip {
+  margin-top: 14rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.record-tip {
+  color: #047857;
+  font-weight: 800;
+}
+
+.exercise-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16rpx;
+  margin-top: 22rpx;
+}
+
+.record-btn,
+.detail-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 82rpx;
+  border-radius: 22rpx;
+  font-size: 27rpx;
+  font-weight: 900;
+  box-sizing: border-box;
+}
+
+.record-btn {
+  color: #ffffff;
+  background: #10b981;
+}
+
+.detail-btn {
+  color: #047857;
+  background: #d1fae5;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14rpx;
+  margin-top: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 82rpx;
+  border-radius: 22rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-size: 26rpx;
+  font-weight: 900;
+  box-sizing: border-box;
+}
+
+.summary-card,
+.exercise-card {
+  border: 1rpx solid #e5e7eb;
+}
+
+.exercise-card {
+  background: #f9fafb;
+}
+
+.exercise-card.done {
+  background: #f9fafb;
+}
+
+.progress-fill,
+.record-btn {
+  background: #10b981;
+}
+
+.record-btn {
+  box-shadow: 0 12rpx 24rpx rgba(16, 185, 129, 0.22);
+}
+
+.detail-btn,
+.quick-link {
+  border: 1rpx solid #a7f3d0;
+  background: #ecfdf5;
+}
+
+

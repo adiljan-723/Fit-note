@@ -1,0 +1,164 @@
+<view class="container plan-page">
+  <view class="hero">
+    <view class="hero-title">训练计划</view>
+    <view class="hero-subtitle">根据目标和训练时长，生成或自定义适合自己的健身房训练计划。</view>
+  </view>
+
+  <view class="goal-tabs">
+    <view bindtap="switchGoal" data-goal="muscle" class="goal-tab {{activeGoal === 'muscle' ? 'active' : ''}}">增肌计划</view>
+    <view bindtap="switchGoal" data-goal="fatLoss" class="goal-tab {{activeGoal === 'fatLoss' ? 'active' : ''}}">减脂计划</view>
+  </view>
+
+  <view class="card plan-entry-card">
+    <view class="section-title">{{goalLabel}}计划</view>
+    <view class="section-subtitle">{{goalDesc}}</view>
+
+    <view class="source-note">{{sourceNote}}</view>
+    <view class="plan-actions">
+      <view class="plan-main-btn primary-plan-btn" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="openGenerator">帮我生成计划</view>
+      <view class="plan-main-btn secondary-plan-btn" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="createOwnPlan">我自有计划</view>
+    </view>
+    <navigator url="/pages/exercise-library/exercise-library" class="library-entry">查看动作库和动作要点</navigator>
+  </view>
+
+  <view wx:if="{{showGeneratorDialog}}" class="modal-mask" catchtouchmove="safeTapMove">
+    <view class="modal-card">
+      <view class="modal-title">选择计划类型</view>
+      <view class="modal-desc">生成时会从今天开始顺延安排，生成后只需要选择部位和动作，组数、次数、休息和备注会自动匹配。</view>
+      <view wx:for="{{splitOptions}}" wx:key="type" class="split-option" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="selectSplit" data-type="{{item.type}}">
+        <view class="split-label">{{item.label}}</view>
+        <view class="split-desc">{{item.desc}}</view>
+      </view>
+      <button class="secondary-btn modal-close" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="closeGenerator">取消</button>
+    </view>
+  </view>
+
+  <view wx:if="{{currentPlan}}" class="card generated-plan-card">
+
+    <view class="section-title">{{currentPlan.title}}</view>
+    <view class="section-subtitle">{{currentPlan.summary}}</view>
+
+    <view wx:for="{{currentPlan.days}}" wx:for-item="day" wx:for-index="dayIndex" wx:key="id" class="plan-day">
+      <view class="day-head">
+        <view class="day-title-wrap">
+          <view class="day-title-readonly">{{day.title}}</view>
+        </view>
+
+        <view class="day-count">{{day.exercises.length}} 个动作</view>
+      </view>
+
+      <view class="edit-grid edit-grid-2">
+        <view class="form-item compact-item">
+          <view class="label">主训练部位</view>
+          <picker range="{{bodyParts}}" value="{{day.bodyPartIndex}}" data-day="{{dayIndex}}" bindchange="onPlanDayBodyPartChange">
+            <view class="picker-box plan-picker">{{day.bodyPart}}</view>
+          </picker>
+        </view>
+        <view class="form-item compact-item">
+          <view class="label">训练重点</view>
+          <view class="readonly-box">{{day.focus}}</view>
+        </view>
+      </view>
+
+      <view wx:for="{{day.exercises}}" wx:for-item="exercise" wx:for-index="exerciseIndex" wx:key="id" class="plan-exercise-card">
+        <view class="exercise-title-bar">
+          <view class="exercise-row-title">动作 {{exerciseIndex + 1}}</view>
+          <view class="detail-link" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="openExerciseDetail" data-day="{{dayIndex}}" data-exercise="{{exerciseIndex}}">动作详情</view>
+        </view>
+        <view class="edit-grid edit-grid-2">
+          <view class="form-item compact-item">
+            <view class="label">部位</view>
+            <picker range="{{bodyParts}}" value="{{exercise.bodyPartIndex}}" data-day="{{dayIndex}}" data-exercise="{{exerciseIndex}}" bindchange="onExerciseBodyPartChange">
+              <view class="picker-box plan-picker">{{exercise.bodyPart}}</view>
+            </picker>
+          </view>
+          <view class="form-item compact-item">
+            <view class="label">动作</view>
+            <picker range="{{exercise.exerciseOptions}}" value="{{exercise.exerciseIndex}}" data-day="{{dayIndex}}" data-exercise="{{exerciseIndex}}" bindchange="onPlanExerciseChange">
+              <view class="picker-box plan-picker">{{exercise.name}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view wx:if="{{!currentPlan.isCustom}}" class="prescription-line">
+          <view class="prescription-label">训练建议</view>
+          <view class="prescription-text">{{exercise.setsText}} · {{exercise.repsText}} · 休息 {{exercise.restText}}</view>
+        </view>
+
+        <view wx:if="{{currentPlan.isCustom}}" class="custom-prescription-grid">
+          <view class="form-item compact-item">
+            <view class="label">组数</view>
+            <input class="input compact-input" value="{{exercise.sets}}" data-day="{{dayIndex}}" data-exercise="{{exerciseIndex}}" data-field="sets" bindinput="onCustomExerciseFieldInput" />
+          </view>
+          <view class="form-item compact-item">
+            <view class="label">次数</view>
+            <input class="input compact-input" value="{{exercise.reps}}" data-day="{{dayIndex}}" data-exercise="{{exerciseIndex}}" data-field="reps" bindinput="onCustomExerciseFieldInput" />
+          </view>
+          <view class="form-item compact-item">
+            <view class="label">休息</view>
+            <view class="readonly-box compact-readonly">{{exercise.restText}}</view>
+          </view>
+        </view>
+
+        <view class="form-item compact-item">
+          <view class="label">备注</view>
+
+          <view class="readonly-box note-readonly">{{exercise.note}}</view>
+        </view>
+
+        <view wx:if="{{exercise.hasUnsaved}}" class="exercise-actions single-action">
+          <view class="mini-primary-btn" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="saveExercise" data-day="{{dayIndex}}" data-exercise="{{exerciseIndex}}">保存此动作</view>
+        </view>
+
+      </view>
+      <view wx:if="{{currentPlan.isCustom}}" class="add-action-wrap">
+        <view class="secondary-plan-btn add-action-btn" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="addExercise" data-day="{{dayIndex}}">添加动作</view>
+      </view>
+    </view>
+
+    <view wx:if="{{hasUnsavedChanges}}" class="save-plan-wrap">
+      <view class="primary-btn save-plan-btn" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="saveCurrentPlan">保存此计划</view>
+
+    </view>
+  </view>
+
+  <view wx:if="{{!currentPlan}}" class="card">
+
+    <view class="section-title">{{plan.title}}</view>
+    <view class="section-subtitle">{{plan.summary}}</view>
+    <view class="tag-wrap">
+      <view wx:for="{{plan.tags}}" wx:key="*this" class="tag">{{item}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!currentPlan}}" wx:for="{{plan.days}}" wx:for-item="dayItem" wx:key="day" class="card day-card">
+
+    <view class="static-day-head">
+      <view>
+        <view class="day-label">{{dayItem.day}}</view>
+        <view class="day-title">{{dayItem.title}}</view>
+      </view>
+      <view class="focus-pill">{{dayItem.focus}}</view>
+    </view>
+
+    <view wx:for="{{dayItem.exercises}}" wx:for-item="exercise" wx:key="name" class="plan-exercise">
+      <view class="exercise-head">
+        <view class="exercise-name">{{exercise.name}}</view>
+        <view class="exercise-head-side">
+          <view class="exercise-meta">{{exercise.sets}} · {{exercise.reps}}</view>
+          <view class="static-detail-link" bindtouchstart="safeTapStart" bindtouchmove="safeTapMove" bindtap="handleSafeAction" data-action="openExerciseDetail" data-name="{{exercise.name}}">详情</view>
+        </view>
+      </view>
+      <view class="exercise-tip">休息 {{exercise.rest}} · {{exercise.tip}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">{{dietGuide.title}}</view>
+    <view class="section-subtitle">{{dietGuide.summary}}</view>
+    <view class="food-title">推荐食物</view>
+    <view class="tag-wrap">
+      <view wx:for="{{dietGuide.foods}}" wx:key="*this" class="tag food-tag">{{item}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,59 @@
+<view class="container workout-page">
+  <view class="hero">
+    <view class="hero-title">今日训练</view>
+    <view class="hero-subtitle">跟着今天的计划完成动作，练完一个就去记录一个。</view>
+    <view class="hero-tags">
+      <view class="hero-tag">{{today}}</view>
+      <view class="hero-tag">{{goalLabel}}</view>
+      <view class="hero-tag">{{planSource === 'generated' ? '自定义计划' : '基础推荐'}}</view>
+    </view>
+  </view>
+
+  <view class="card summary-card">
+    <view class="row between summary-head">
+      <view>
+        <view class="section-title">{{todayPlan.title}}</view>
+        <view class="section-subtitle">{{planTitle}}</view>
+      </view>
+      <view class="progress-pill">{{progressText}}</view>
+    </view>
+    <view class="focus-line">{{todayPlan.focus}}</view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{totalCount ? doneCount * 100 / totalCount : 0}}%;"></view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">今日动作</view>
+    <view wx:if="{{exercises.length === 0}}" class="empty empty-action">
+      <view class="empty-title">今天还没有训练动作</view>
+      <view class="empty-desc">请先去计划页生成或编辑训练计划，再回来开始训练。</view>
+      <navigator url="/pages/plan/plan" open-type="switchTab" class="empty-btn">去计划页</navigator>
+    </view>
+
+    <view wx:for="{{exercises}}" wx:key="name" class="exercise-card {{item.done ? 'done' : ''}}">
+      <view class="row between exercise-head">
+        <view class="exercise-title-wrap">
+          <view class="exercise-name">{{index + 1}}. {{item.name}}</view>
+          <view class="exercise-part">{{item.bodyPart}}</view>
+        </view>
+        <view class="status-badge {{item.done ? 'done' : ''}}">{{item.done ? '已记录' : '待记录'}}</view>
+      </view>
+
+      <view class="prescription-line">{{item.setsText}} · {{item.repsText}} · 休息 {{item.restText}}</view>
+      <view wx:if="{{item.note}}" class="exercise-note">{{item.note}}</view>
+      <view wx:if="{{item.done}}" class="record-tip">今天已记录 {{item.recordCount}} 次，可继续补充记录。</view>
+
+      <view class="exercise-actions">
+        <view class="detail-btn" data-index="{{index}}" bindtap="openExerciseDetail">动作详情</view>
+        <view class="record-btn" data-index="{{index}}" bindtap="recordExercise">{{item.done ? '继续记录' : '记录此动作'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-links">
+    <navigator url="/pages/plan/plan" open-type="switchTab" class="quick-link">调整计划</navigator>
+    <navigator url="/pages/exercise-library/exercise-library" class="quick-link">动作库</navigator>
+    <navigator url="/pages/training/training" open-type="switchTab" class="quick-link">训练记录</navigator>
+  </view>
+</view>

@@ -1,0 +1,511 @@
+.plan-page {
+  overflow-x: hidden;
+}
+
+.goal-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.goal-tab {
+  padding: 22rpx 0;
+  border-radius: 22rpx;
+  text-align: center;
+  color: #6b7280;
+  background: #ffffff;
+  font-size: 28rpx;
+  font-weight: 800;
+  box-shadow: 0 8rpx 24rpx rgba(17, 24, 39, 0.05);
+}
+
+.goal-tab.active {
+  color: #ffffff;
+  background: #10b981;
+}
+
+.plan-entry-card,
+.generated-plan-card,
+.plan-day,
+.plan-exercise-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.source-note {
+  margin-top: 18rpx;
+  padding: 18rpx;
+  border-radius: 18rpx;
+  color: #047857;
+  background: #ecfdf5;
+  font-size: 23rpx;
+  line-height: 1.5;
+}
+
+.plan-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18rpx;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 24rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.plan-main-btn,
+.library-entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  height: 88rpx;
+  padding: 0 12rpx;
+  border-radius: 22rpx;
+  font-size: 27rpx;
+  font-weight: 800;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.library-entry {
+  margin-top: 18rpx;
+  color: #047857;
+  background: #d1fae5;
+}
+
+.primary-plan-btn {
+  color: #ffffff;
+  background: #10b981;
+}
+
+.secondary-plan-btn {
+  color: #111827;
+  background: #e5e7eb;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 34rpx;
+  background: rgba(17, 24, 39, 0.58);
+  box-sizing: border-box;
+}
+
+.modal-card {
+  width: 100%;
+  max-height: 82vh;
+  padding: 28rpx;
+  border-radius: 30rpx;
+  background: #ffffff;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.modal-title {
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.modal-desc {
+  margin-top: 10rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.split-option {
+  margin-top: 18rpx;
+  padding: 22rpx;
+  border: 2rpx solid #d1fae5;
+  border-radius: 22rpx;
+  background: #f0fdf4;
+}
+
+.split-label {
+  color: #064e3b;
+  font-size: 29rpx;
+  font-weight: 900;
+}
+
+.split-desc {
+  margin-top: 8rpx;
+  color: #047857;
+  font-size: 23rpx;
+  line-height: 1.45;
+}
+
+.modal-close {
+  margin-top: 22rpx;
+}
+
+.plan-day {
+  margin-top: 24rpx;
+  padding: 22rpx;
+  border-radius: 26rpx;
+  background: #f9fafb;
+  border: 2rpx solid #eef2f7;
+}
+
+.day-head,
+.static-day-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14rpx;
+  min-width: 0;
+}
+
+.day-title-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.day-date,
+.day-label {
+  color: #10b981;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.day-title-readonly,
+.day-title {
+  width: 100%;
+  margin-top: 6rpx;
+  min-height: 56rpx;
+  color: #111827;
+  font-size: 32rpx;
+  font-weight: 900;
+  box-sizing: border-box;
+  word-break: break-all;
+}
+
+.day-count,
+.focus-pill {
+  flex-shrink: 0;
+  max-width: 190rpx;
+  padding: 10rpx 14rpx;
+  border-radius: 999rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-size: 21rpx;
+  font-weight: 800;
+  text-align: center;
+  box-sizing: border-box;
+  word-break: break-all;
+}
+
+.edit-grid,
+.readonly-grid {
+  display: grid;
+  gap: 14rpx;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8rpx;
+  box-sizing: border-box;
+}
+
+.edit-grid-2 {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.readonly-grid-3 {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.prescription-line {
+  margin-top: 18rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  background: #f3f4f6;
+  box-sizing: border-box;
+}
+
+.custom-prescription-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14rpx;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8rpx;
+  box-sizing: border-box;
+}
+
+
+.prescription-label {
+  color: #6b7280;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.prescription-text {
+  margin-top: 6rpx;
+  color: #374151;
+  font-size: 25rpx;
+  font-weight: 800;
+  line-height: 1.45;
+  word-break: break-all;
+}
+
+.compact-item {
+  min-width: 0;
+  margin-top: 18rpx;
+}
+
+
+.plan-picker,
+.readonly-box {
+  min-width: 0;
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+  font-size: 25rpx;
+}
+
+.readonly-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 84rpx;
+  border-radius: 20rpx;
+  color: #374151;
+  background: #f3f4f6;
+  box-sizing: border-box;
+  word-break: break-all;
+}
+
+.compact-readonly {
+  min-height: 76rpx;
+  justify-content: center;
+  text-align: center;
+  padding-left: 8rpx;
+  padding-right: 8rpx;
+  font-size: 24rpx;
+}
+
+.note-readonly {
+  min-height: 86rpx;
+  line-height: 1.45;
+}
+
+.plan-exercise-card {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 22rpx rgba(17, 24, 39, 0.05);
+}
+
+.exercise-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.exercise-row-title {
+  color: #111827;
+  font-size: 26rpx;
+  font-weight: 900;
+}
+
+.detail-link,
+.static-detail-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 999rpx;
+  color: #047857;
+  background: #d1fae5;
+  font-size: 22rpx;
+  font-weight: 900;
+}
+
+.detail-link {
+  width: 132rpx;
+  height: 50rpx;
+}
+
+.static-detail-link {
+  width: 78rpx;
+  height: 44rpx;
+}
+
+.exercise-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18rpx;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 18rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mini-primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  height: 72rpx;
+  line-height: normal;
+  padding: 0 12rpx;
+  border-radius: 18rpx;
+  color: #ffffff;
+  background: #10b981;
+  font-size: 24rpx;
+  font-weight: 800;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.add-action-wrap {
+  margin-top: 20rpx;
+}
+
+.add-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 76rpx;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  font-weight: 800;
+  box-sizing: border-box;
+}
+
+.save-plan-wrap {
+  margin-top: 28rpx;
+}
+
+.save-plan-btn {
+
+  margin-top: 0;
+}
+
+.tag-wrap {
+  margin-top: 16rpx;
+}
+
+.day-card {
+  padding-bottom: 18rpx;
+}
+
+.plan-exercise {
+  margin-top: 18rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: #f3f4f6;
+}
+
+.exercise-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.exercise-name {
+  min-width: 0;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.exercise-head-side {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  flex-shrink: 0;
+}
+
+.exercise-meta {
+  flex-shrink: 0;
+  color: #111827;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.exercise-tip {
+  margin-top: 10rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.food-title {
+  margin-top: 22rpx;
+  color: #374151;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.plan-page button {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.goal-tab {
+  border: 1rpx solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.goal-tab.active,
+.primary-plan-btn,
+.mini-primary-btn {
+  background: #10b981;
+  box-shadow: 0 12rpx 26rpx rgba(16, 185, 129, 0.22);
+}
+
+.secondary-plan-btn,
+.library-entry,
+.detail-link,
+.static-detail-link {
+  border: 1rpx solid #a7f3d0;
+  color: #047857;
+  background: #ecfdf5;
+}
+
+.source-note,
+.prescription-line {
+  border: 1rpx solid #bbf7d0;
+}
+
+.plan-day {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+.plan-exercise-card,
+.plan-exercise {
+  border: 1rpx solid #e5e7eb;
+}
+
+.readonly-box,
+.plan-picker {
+  background: #f8fafc;
+}
+
+.readonly-box {
+  border: 1rpx solid #e5e7eb;
+  color: #6b7280;
+}
+
+.plan-picker {
+  border: 1rpx solid #d1fae5;
+}
+
+
+

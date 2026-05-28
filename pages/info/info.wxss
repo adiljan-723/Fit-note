@@ -1,0 +1,15 @@
+.info-page {
+  overflow-x: hidden;
+}
+
+.info-section {
+  background: #f9fafb;
+}
+
+.info-line {
+  margin-top: 14rpx;
+  color: #4b5563;
+  font-size: 26rpx;
+  line-height: 1.65;
+}
+

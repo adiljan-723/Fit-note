@@ -1,0 +1,112 @@
+<view class="container home-page">
+  <view class="hero home-hero">
+    <view class="hero-kicker">{{today}}</view>
+    <view class="hero-title">Fit Note</view>
+    <view class="hero-subtitle">{{greetingText}}，今天按计划训练，记录容量和饮食，让进步更清楚。</view>
+    <view class="hero-profile-row">
+      <view class="hero-pill">{{goalLabel}}</view>
+      <view class="hero-pill">{{profile.trainingDuration}}</view>
+      <view class="hero-pill">每周 {{profile.daysPerWeek}} 天</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!hasProfile}}" class="card setup-card">
+    <view class="section-title">先完善你的训练资料</view>
+    <view class="section-subtitle">设置目标、训练时长和每周训练次数后，首页会给你更合理的训练提醒。</view>
+    <navigator url="/pages/profile/profile" open-type="switchTab" class="primary-btn setup-btn">去设置资料</navigator>
+  </view>
+
+  <view class="card today-card">
+    <view class="row between card-head">
+      <view>
+        <view class="section-title">今日该做什么</view>
+        <view class="section-subtitle">{{todayPlan.source === 'generated' ? planTitle : '基础推荐计划'}}</view>
+      </view>
+      <view class="plan-badge">{{todayPlan.source === 'generated' ? '已生成' : '推荐'}}</view>
+    </view>
+
+    <view class="today-title">{{todayPlan.title}}</view>
+    <view class="today-focus">{{todayPlan.focus}}</view>
+
+    <view wx:if="{{todayPlan.exercises.length > 0}}" class="exercise-list">
+      <view wx:for="{{todayPlan.exercises}}" wx:key="name" class="exercise-row">
+        <view class="exercise-main">
+          <view class="exercise-name">{{index + 1}}. {{item.name}}</view>
+          <view class="exercise-meta">{{item.setsText}} · {{item.repsText}} · 休息 {{item.restText}}</view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty empty-action">
+      <view class="empty-title">今天还没有训练动作</view>
+      <view class="empty-desc">先去计划页生成一套适合自己的训练计划。</view>
+      <navigator url="/pages/plan/plan" open-type="switchTab" class="empty-btn">去生成计划</navigator>
+    </view>
+
+    <view class="today-hint">{{hasGeneratedPlan ? '可进入今日训练页，按动作逐个完成并记录。' : '还没有自定义计划，可以先去计划页生成。'}}</view>
+
+    <navigator url="/pages/workout/workout" class="start-workout-btn">开始今日训练</navigator>
+
+    <view class="quick-actions">
+      <navigator url="/pages/plan/plan" open-type="switchTab" class="secondary-btn action-btn">{{hasGeneratedPlan ? '查看计划' : '生成计划'}}</navigator>
+      <navigator url="/pages/training/training" open-type="switchTab" class="secondary-btn action-btn">手动记录</navigator>
+    </view>
+
+  </view>
+
+  <view class="card checklist-card">
+    <view class="section-title">今日完成度</view>
+    <view class="check-list">
+      <view wx:for="{{checklist}}" wx:key="label" class="check-item {{item.done ? 'done' : ''}}">
+        <view class="check-dot">{{item.done ? '✓' : ''}}</view>
+        <view class="check-text">
+          <view class="check-title">{{item.label}}</view>
+          <view class="check-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+    <button class="secondary-btn checkin-btn" bindtap="toggleCheckin">{{checked ? '取消今日打卡' : '完成今日打卡'}}</button>
+  </view>
+
+  <view class="card">
+    <view class="section-title">本周训练数据</view>
+    <view class="stat-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{stats.weekCount}}</view>
+        <view class="stat-label">训练天数</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.todaySets}}</view>
+        <view class="stat-label">今日组数</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.todayVolume}}</view>
+        <view class="stat-label">今日容量</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card diet-card">
+    <view class="row between card-head">
+      <view>
+        <view class="section-title">今日饮食</view>
+        <view class="section-subtitle">{{dietGuide.summary}}</view>
+      </view>
+      <view class="diet-badge {{diet ? 'done' : ''}}">{{diet ? '已记录' : '待记录'}}</view>
+    </view>
+    <view class="tag-wrap">
+      <view wx:for="{{dietGuide.targets}}" wx:key="*this" class="tag">{{item}}</view>
+    </view>
+    <navigator url="/pages/diet/diet" open-type="switchTab" class="secondary-btn diet-btn">{{diet ? '查看饮食记录' : '去记录饮食'}}</navigator>
+  </view>
+
+  <view class="card shortcut-card">
+    <view class="section-title">快捷入口</view>
+    <view class="shortcut-grid">
+      <navigator url="/pages/plan/plan" open-type="switchTab" class="shortcut-item">计划</navigator>
+      <navigator url="/pages/exercise-library/exercise-library" class="shortcut-item">动作库</navigator>
+      <navigator url="/pages/training/training" open-type="switchTab" class="shortcut-item">训练</navigator>
+      <navigator url="/pages/diet/diet" open-type="switchTab" class="shortcut-item">饮食</navigator>
+      <navigator url="/pages/profile/profile" open-type="switchTab" class="shortcut-item">我的</navigator>
+    </view>
+  </view>
+</view>
