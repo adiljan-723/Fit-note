@@ -24,13 +24,13 @@ function getDefaultSyncStatus() {
     enabled: false,
     syncing: false,
     lastSyncAt: '',
-    message: '尚未同步',
+    message: '本地稳定版，不启用云同步',
     error: ''
   }
 }
 
 function getCloudSyncStatus() {
-  return Object.assign({}, getDefaultSyncStatus(), wx.getStorageSync(KEYS.CLOUD_SYNC_STATUS) || {})
+  return getDefaultSyncStatus()
 }
 
 function setCloudSyncStatus(status) {
@@ -118,86 +118,22 @@ async function replaceCollectionByLocalList(collectionName, list) {
 }
 
 async function loadCloudDataToLocal() {
-  const db = getDb()
-  if (!db) return false
-
-  const profileDoc = await getCollectionFirst(COLLECTIONS.PROFILE)
-  if (profileDoc) wx.setStorageSync(KEYS.PROFILE, Object.assign({}, DEFAULT_PROFILE, stripCloudFields(profileDoc)))
-
-  const planDoc = await getCollectionFirst(COLLECTIONS.PLANS)
-  if (planDoc && planDoc.plans) wx.setStorageSync(KEYS.WORKOUT_PLAN, planDoc.plans)
-
-  const trainingResult = await db.collection(COLLECTIONS.TRAINING).orderBy('createdAt', 'desc').limit(1000).get()
-  if (trainingResult.data && trainingResult.data.length > 0) wx.setStorageSync(KEYS.TRAINING, stripListCloudFields(trainingResult.data))
-
-  const dietResult = await db.collection(COLLECTIONS.DIET).orderBy('updatedAt', 'desc').limit(1000).get()
-  if (dietResult.data && dietResult.data.length > 0) wx.setStorageSync(KEYS.DIET, stripListCloudFields(dietResult.data))
-
-  const checkinDoc = await getCollectionFirst(COLLECTIONS.CHECKINS)
-  if (checkinDoc && Array.isArray(checkinDoc.dates)) wx.setStorageSync(KEYS.CHECKINS, checkinDoc.dates)
-
-  return true
+  setCloudSyncStatus({ enabled: false, syncing: false, message: '本地稳定版，不启用云同步', error: '' })
+  return false
 }
 
 async function syncLocalDataToCloud() {
-  if (!getDb()) return false
-  await upsertSingle(COLLECTIONS.PROFILE, getProfile())
-  await upsertSingle(COLLECTIONS.PLANS, { plans: getWorkoutPlanStore() })
-  await upsertSingle(COLLECTIONS.CHECKINS, { dates: getCheckins() })
-  await replaceCollectionByLocalList(COLLECTIONS.TRAINING, getTrainingRecords())
-  await replaceCollectionByLocalList(COLLECTIONS.DIET, getDietRecords())
-  return true
+  setCloudSyncStatus({ enabled: false, syncing: false, message: '本地稳定版，不启用云同步', error: '' })
+  return false
 }
 
-async function initCloudSync(options) {
-  const shouldPullFirst = options && options.pullFirst
-  if (!isCloudReady()) {
-    setCloudSyncStatus({ enabled: false, syncing: false, message: '当前基础库暂不支持云开发' })
-    return null
-  }
-
-  setCloudSyncStatus({ enabled: true, syncing: true, message: '正在连接云端', error: '' })
-  try {
-    const user = await callLoginFunction()
-    if (shouldPullFirst) await loadCloudDataToLocal()
-    await syncLocalDataToCloud()
-    setCloudSyncStatus({
-      enabled: true,
-      syncing: false,
-      lastSyncAt: new Date().toISOString(),
-      message: '云端同步已开启',
-      error: ''
-    })
-    return user
-  } catch (error) {
-    setCloudSyncStatus({
-      enabled: false,
-      syncing: false,
-      message: '云端同步暂不可用，本地记录仍可使用',
-      error: error && error.message ? error.message : '同步失败'
-    })
-    return null
-  }
+async function initCloudSync() {
+  setCloudSyncStatus({ enabled: false, syncing: false, message: '本地稳定版，不启用云同步', error: '' })
+  return null
 }
 
 function syncAfterLocalChange() {
-  if (!getCloudUser() || !isCloudReady()) return
-  syncLocalDataToCloud().then(() => {
-    setCloudSyncStatus({
-      enabled: true,
-      syncing: false,
-      lastSyncAt: new Date().toISOString(),
-      message: '云端同步已更新',
-      error: ''
-    })
-  }).catch(error => {
-    setCloudSyncStatus({
-      enabled: false,
-      syncing: false,
-      message: '云端同步失败，本地记录已保存',
-      error: error && error.message ? error.message : '同步失败'
-    })
-  })
+  return null
 }
 
 function ensureDefaults() {

@@ -1,5 +1,5 @@
 {
-  "description": "Fit Note v0.9.0 CloudBase 用户身份与云端同步基础版小程序",
+  "description": "Fit Note v0.9.1 本地稳定版小程序",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -32,7 +32,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.7.12",
-  "appid": "wx026ca3dfac38b9ed",
+  "appid": "wx35d0e66103ba4429",
   "projectname": "fit-note",
   "miniprogramRoot": "./",
   "cloudfunctionRoot": "cloudfunctions/",

@@ -1,10 +1,12 @@
-# Fit Note 云函数目录
+# Fit Note 后端规划目录
 
-当前项目已接入 CloudBase 云开发环境初始化。
+当前版本：`v0.9.1 本地稳定版`
 
-环境 ID：`ai-native-d2g6w34udacbb193d`
+当前小程序运行时不依赖云开发，不会主动调用云函数或云数据库。数据优先保存在微信小程序本地缓存中。
 
-后续云函数建议按功能拆分：
+本目录保留为后续后端升级规划，方便以后继续扩展为 CloudBase 或自建后端版本。
+
+## 后续可选云函数规划
 
 ```text
 cloudfunctions/
@@ -14,12 +16,10 @@ cloudfunctions/
 └── syncUserData/       云端同步辅助逻辑
 ```
 
-当前版本已创建 `login` 云函数，用于获取微信小程序用户 openid，并维护 `users` 集合中的登录信息。
-
-v0.9.0 已接入本地 + 云端同步基础能力：
+## 后续可选云数据库集合
 
 ```text
-users              云函数维护的用户登录信息
+users              用户身份
 user_profiles      用户资料
 training_records   训练记录
 diet_records       饮食记录
@@ -27,8 +27,8 @@ workout_plans      训练计划
 checkins           打卡记录
 ```
 
-后续仍可继续扩展：
+## 当前处理原则
 
-- `exportRecords`：导出训练/饮食记录 CSV
-- `getStats`：在云端聚合训练统计
-- `syncUserData`：将当前客户端直连同步升级为统一云函数同步
+- 当前版本不启用云同步，避免未开通云开发资源时产生报错。
+- `login` 云函数代码仅作为后端升级参考，不是当前运行必需项。
+- 如后续决定接入 CloudBase，需要先开通小程序云开发环境，再替换环境 ID、部署云函数、创建集合和配置权限。

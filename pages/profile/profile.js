@@ -19,9 +19,8 @@ Page({
     goalLabels: goalOptions.map(item => item.label),
     dayLabels: dayOptions.map(item => `每周 ${item} 天`),
     durationLabels: durationOptions.map(item => item.label),
-    version: '0.9.0',
-    cloudUser: null,
-    cloudSyncStatus: storage.getCloudSyncStatus(),
+    version: '0.9.1',
+    storageModeText: '本地缓存稳定运行',
 
     genderIndex: 0,
 
@@ -47,9 +46,7 @@ Page({
       genderIndex,
       goalIndex,
       dayIndex,
-      durationIndex,
-      cloudUser: storage.getCloudUser(),
-      cloudSyncStatus: storage.getCloudSyncStatus()
+      durationIndex
     })
   },
 
@@ -94,20 +91,7 @@ Page({
 
   saveProfile() {
     storage.saveProfile(Object.assign({}, this.data.form, { configured: true }))
-    this.setData({ cloudSyncStatus: storage.getCloudSyncStatus() })
     wx.showToast({ title: '已保存', icon: 'success' })
-  },
-
-  syncNow() {
-    this.setData({ cloudSyncStatus: Object.assign({}, storage.getCloudSyncStatus(), { syncing: true, message: '正在手动同步' }) })
-    storage.initCloudSync({ pullFirst: false }).then(() => {
-      this.setData({
-        cloudUser: storage.getCloudUser(),
-        cloudSyncStatus: storage.getCloudSyncStatus()
-      })
-      const status = storage.getCloudSyncStatus()
-      wx.showToast({ title: status.enabled ? '同步成功' : '同步失败', icon: status.enabled ? 'success' : 'none' })
-    })
   }
 })
 

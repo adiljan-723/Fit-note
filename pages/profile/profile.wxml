@@ -4,17 +4,11 @@
     <view class="hero-subtitle">Fit Note 会根据你的目标，优先展示增肌或减脂训练计划和饮食建议。</view>
   </view>
 
-  <view class="card cloud-card">
-    <view class="section-title">云端同步</view>
-    <view class="cloud-row">
-      <view>
-        <view class="cloud-title">{{cloudSyncStatus.message}}</view>
-        <view class="cloud-desc" wx:if="{{cloudUser && cloudUser.openid}}">用户标识：{{cloudUser.openid}}</view>
-        <view class="cloud-desc" wx:elif="{{cloudSyncStatus.error}}">{{cloudSyncStatus.error}}</view>
-        <view class="cloud-desc" wx:else>用于后续多设备同步、数据备份和真实后端展示。</view>
-      </view>
-      <button class="sync-btn" bindtap="syncNow" loading="{{cloudSyncStatus.syncing}}">同步</button>
-    </view>
+  <view class="card local-card">
+    <view class="section-title">本地数据管理</view>
+    <view class="local-title">{{storageModeText}}</view>
+    <view class="local-desc">当前版本不依赖付费云开发，训练、饮食、计划、资料和打卡数据都会保存在当前微信小程序本地缓存中。</view>
+    <view class="local-desc">后续如需多设备同步和数据备份，可再升级 CloudBase 或自建后端。</view>
   </view>
 
   <view class="card">
@@ -85,7 +79,7 @@
 
   <view class="card tip-card">
     <view class="section-title">当前版本 v{{version}}</view>
-    <view class="section-subtitle">v0.9.0 已接入 CloudBase 用户身份、云数据库集合和本地 + 云端同步能力，训练、饮食、计划和资料会优先保存在本地，并自动尝试同步到云端。</view>
+    <view class="section-subtitle">v0.9.1 为本地稳定版，已关闭运行中的云同步请求，保留后端升级规划，适合继续开发、面试展示和 GitHub 管理。</view>
   </view>
 
 </view>
